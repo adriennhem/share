@@ -1,0 +1,26 @@
+<h2>New Roster Entry</h2>
+
+<%= form_for [@roster.teamstat, @roster], :html => {:class => "well form-horizontal"} do |f| %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
+    <%= f.hidden_field :teamstat_id %>
+    <div class="alert alert-info">This person will be added to the roster for <%= @teamstat.team_name %></div>
+
+    <div class="control-group">
+        <%= f.label "Person", :class => "control-label" %>
+        <div class="controls"><%= f.text_field :person_id %></div>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :position, :class => "control-label" %>
+        <div class="controls"><%= f.select(:position, Person::POSITIONS) %></div>
+    </div>
+    <div class="control-group">
+        <%= f.label :jersey_number, :class => "control-label" %>
+        <div class="controls"><%= f.text_field :jersey_number %></div>
+    </div>
+    <div class="form-actions">
+        <%= f.submit "Create", :class => "btn" %>
+        <%= link_to "Cancel", leagues_path, :class => "btn" %>
+    </div>
+<% end %>
+

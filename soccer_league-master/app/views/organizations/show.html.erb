@@ -1,0 +1,24 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Organizations", organizations_path %><span class="divider">/</span>
+  </li>
+  <li class="active"><%= "#{@organization.name}" %></li>
+</ul>
+
+<div class="btn-toolbar">
+      <% if can? :new, @organization %>
+        <%= link_to "Edit Organization", "#{@organization.id}/edit", :class => "btn" %>
+        <%= link_to "New League", new_organization_league_path(@organization), :class => "btn" %>
+      <% end %>
+</div>
+
+<div>
+<% unless @organization.leagues.empty? %>
+  <%= render :partial => "leagues/simple", :locals => {:leagues => @organization.leagues} %>
+<% end %>
+</div>
+<div class="row">
+  <div class="span12">
+      <%= render :partial => "shared/audit", :locals => {:auditable => @organization} %>
+  </div>
+</div>
+

@@ -1,0 +1,60 @@
+fr:
+  football: Football
+  login_form:
+    username: Username
+    password: Password
+    remember_me: Remember me
+  home_page:
+    headline: Football Statistics for All!
+    body: Bienvenu! Footy Stats puts league management into your hands. Currently, this application is under a lot of development and will be changing frequently. Feel free to try it out. Just keep in mind it is not feature complete. And, data will not be saved.
+  menu_top:
+    home: Home
+    orgs: Organisations
+    leagues: Ligues
+    teams: Équipes
+    people: Personnes
+    venues: Venues
+    users: Users
+    profile: Profile
+    logout: Sign out
+    help: Help
+    login: Sign In
+    login_facebook: Sign In With Facebook
+  menu_bottom:
+    about: Sur
+    contact: Contact
+  will_paginate:
+    previous_label: "&#8592; Précedent"
+    next_label: "Suivant &#8594;"
+  search: Recherche
+  team: Équipe
+  teams: Équipes
+  team_new: Nouvelle Équipe
+  name: Nom
+  langs:
+    de: Deutsch
+    el: Ελληνικά
+    en: English
+    en-GB: English
+    es: Español
+    fr: Français
+    it: Italiano
+    ja: 日本語
+    ko: 한국어 (韓國語)
+    nl: Dutch
+    pl: Polski
+    pt: Português
+    pt-BR: Português
+    ru: русский язык
+    tr: Türkçe
+    zh: 中文
+  team_form:
+    address1: Adresse1
+    address2: Adresse2
+    city: Ville
+    state: État
+    zip: Code Postal
+    country: Pays
+    phone: Téléphone
+    website: Site Web
+    email: Email

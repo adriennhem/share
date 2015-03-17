@@ -1,0 +1,19 @@
+<ul class="breadcrumb">
+  <li><%= link_to "#{@league.name} (#{@league.from_year}-#{@league.to_year})", league_path(@league.id) %><span class="divider">/</span>
+  </li>
+  <li class="active">All Games</li>
+</ul>
+
+<div class="btn-toolbar">
+  <% if can? :new, @game %>
+      <%= link_to "Create Game", new_league_game_path(@league), :class => "btn" %>
+  <% end %>
+</div>
+<table id="games_table" class="table table-condensed">
+<tr>
+<th title="Game">Game</th>
+<th title="Completed">Status</th>
+</tr>
+  <%= render @games %>
+</table>
+<%= render :partial => "shared/pagination", :locals => {:model => @games} %>

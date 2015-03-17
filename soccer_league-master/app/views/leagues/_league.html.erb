@@ -1,0 +1,24 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table id="leagues_table" class="table table-condensed">
+  <tr>
+    <th title="Name"><%= sortable "name"  %></th>
+    <th title="Season"><%= sortable "from_year"  %></th>
+    <th title="Actions">Actions</th>
+  </tr>
+  <% for league in @leagues%>
+    <tr>
+      <td><%= link_to league.name, league %></td>
+      <td><%= league.from_year %>-<%= league.to_year %></td>
+      <td>
+        <% if can? :new, league %>
+          <%= link_to "Delete", league, :method => :delete, :data => {:confirm => "Delete this league: #{league.name}?"},
+                      :class => "btn btn-danger",
+                      :title => "Delete #{league.name}" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end%>
+</table>
+<%= render :partial => "shared/pagination", :locals => {:model => @leagues} %>
+

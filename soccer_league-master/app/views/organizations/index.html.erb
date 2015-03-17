@@ -1,0 +1,18 @@
+<%=header_title("Organization Management")%>
+<div class="alert">Organizations (also Associations) manage leagues. These can be as large as national/continental confederations or local city associations.</div>
+
+<div class="btn-toolbar">
+  <% if can? :new, @organization %>
+      <%= link_to "New Organization", "organizations/new", :class => "btn" %>
+  <% end %>
+</div>
+
+<table id="organizations_table" class="table table-condensed">
+<tr>
+<th title="Name">Name</th>
+<th title="Founded">Founded</th>
+<th title="Actions">Actions</th>
+</tr>
+  <%= render @organizations %>
+</table>
+<%= render :partial => "shared/pagination", :locals => {:model => @organizations} %>

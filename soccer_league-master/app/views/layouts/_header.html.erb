@@ -1,0 +1,52 @@
+<section id="topnavbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Footy Stats</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to t('menu_top.home'), home_path %></li>
+            <li><%= link_to t('menu_top.orgs'), organizations_path %></li>
+            <li><%= link_to t('menu_top.leagues'), leagues_path %></li>
+            <li><%= link_to t('menu_top.teams'), teams_path %></li>
+            <li><%= link_to t('menu_top.people'), people_path %></li>
+            <li><%= link_to t('menu_top.venues'), venues_path %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to t('menu_top.users'), users_path %></li>
+              <li><%= link_to t('menu_top.profile'), edit_user_registration_path %></li>
+              <li><%= link_to t('menu_top.logout'), destroy_user_session_path %></li>
+          <% else %>
+              <li><%= link_to t('menu_top.login'), new_user_session_path %></li>
+                <li><%= link_to image_tag("facebook.png", :alt => t('menu_top.login_facebook')), user_omniauth_authorize_path(:facebook) %></li>
+          <% end %>
+            <li><%= link_to t('menu_top.help'), help_path %></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="<%="/de#{full_path_no_locale}" %>"><%= t('langs.de') %> <%= image_tag("locales/de.png") %></a></li>
+                      <li><a href="<%="/el#{full_path_no_locale}" %>"><%= t('langs.el') %> <%= image_tag("locales/el.png") %></a></li>
+                      <li><a href="<%="/en#{full_path_no_locale}" %>"><%= t('langs.en') %> <%= image_tag("locales/en.png") %></a></li>
+                      <li><a href="<%="/en-GB#{full_path_no_locale}" %>"><%= t('langs.en-GB') %> <%= image_tag("locales/en-GB.png") %></a></li>
+                      <li><a href="<%="/es#{full_path_no_locale}" %>"><%= t('langs.es') %> <%= image_tag("locales/es.png") %></a></li>
+                      <li><a href="<%="/fr#{full_path_no_locale}" %>"><%= t('langs.fr') %> <%= image_tag("locales/fr.png") %></a></li>
+                      <li><a href="<%="/it#{full_path_no_locale}" %>"><%= t('langs.it') %> <%= image_tag("locales/it.png") %></a></li>
+                      <li><a href="<%="/ja#{full_path_no_locale}" %>"><%= t('langs.ja') %> <%= image_tag("locales/ja.png") %></a></li>
+                      <li><a href="<%="/ko#{full_path_no_locale}" %>"><%= t('langs.ko') %> <%= image_tag("locales/ko.png") %></a></li>
+                      <li><a href="<%="/nl#{full_path_no_locale}" %>"><%= t('langs.nl') %> <%= image_tag("locales/nl.png") %></a></li>
+                      <li><a href="<%="/pl#{full_path_no_locale}" %>"><%= t('langs.pl') %> <%= image_tag("locales/pl.png") %></a></li>
+                      <li><a href="<%="/pt#{full_path_no_locale}" %>"><%= t('langs.pt') %> <%= image_tag("locales/pt.png") %></a></li>
+                      <li><a href="<%="/pt-BR#{full_path_no_locale}" %>"><%= t('langs.pt-BR') %> <%= image_tag("locales/pt-BR.png") %></a></li>
+                      <li><a href="<%="/ru#{full_path_no_locale}" %>"><%= t('langs.ru') %> <%= image_tag("locales/ru.png") %></a></li>
+                      <li><a href="<%="/tr#{full_path_no_locale}" %>"><%= t('langs.tr') %> <%= image_tag("locales/tr.png") %></a></li>
+                      <li><a href="<%="/zh#{full_path_no_locale}" %>"><%= t('langs.zh') %> <%= image_tag("locales/zh.png") %></a></li>
+                  </ul>
+              </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<tr>
+  <td><%= game.visiting_team_name %> at <%= game.home_team_name %></td>
+  <td>
+    <% if game.completed? %>
+      <span class="label label-success">Game Over</span>
+    <% else %>
+      <span class="label label-warning">Game In Progress</span>
+    <% end %>
+  </td>
+  <td><%= link_to "Details", game, :class => "btn btn-info" %></td>
+</tr>

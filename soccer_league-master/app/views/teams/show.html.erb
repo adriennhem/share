@@ -1,0 +1,97 @@
+<ul class="breadcrumb">
+  <li><%= link_to t('team_form.all_teams'), teams_path %><span class="divider">/</span></li>
+  <li class="active"><%= @team.name %></li>
+</ul>
+
+<div class="row">
+  <div class="span2" id="person_thumb">
+    <a href="#"><%= image_tag @team.avatar.url(:thumb), {"data-toggle" => "modal"}%></a>
+  </div>
+  <div class="span10">
+    <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
+    <div class="btn-toolbar">
+      <% if can? :new, @team %>
+        <%= link_to "Edit", "#{@team.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Team", new_team_path, :class => "btn" %>
+      <% end %>
+      <%= link_to "All Teams", teams_path, :class => "btn" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="span4">
+    <table class="table table-condensed">
+      <caption><h3>Contact Information</h3></caption>
+      <tr>
+        <th><%=t 'team_form.address1' %></th>
+        <td><%= @team.address1 %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.address2' %></th>
+        <td><%= @team.address2 %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.city' %></th>
+        <td><%= @team.city %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.state' %></th>
+        <td><%= @team.state %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.zip' %></th>
+        <td><%= @team.zip %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.country' %></th>
+        <td><%= @team.country %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.phone' %></th>
+        <td><%= @team.phone %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.website' %></th>
+        <td><%= @team.website %></td>
+      </tr>
+      <tr>
+        <th><%=t 'team_form.email' %></th>
+        <td><%= @team.email %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="span8">
+    <div id="league_history">League history here</div>
+  </div>
+
+</div>
+<div class="modal hide" id="personDetail">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h2 class="team"><%=t :team  %>: <%= @team.name %></h2>
+  </div>
+  <div class="modal-body">
+    <%= image_tag @team.avatar.url(:medium) %>
+  </div>
+  <div class="modal-footer">
+    <a id="modal-close" href="#" class="btn" data-dismiss="modal">OK</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <%= render :partial => "shared/audit", :locals => {:auditable => @team} %>
+  </div>
+</div>
+
+<script language="JavaScript">
+  $(document).ready(function() {
+    $.get('/<%=I18n.locale%>/team_league_history/<%=@team.id %>', function(data) {
+      $('#league_history').html(data);
+    });
+  });
+</script>
+

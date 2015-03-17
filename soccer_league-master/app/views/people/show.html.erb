@@ -1,0 +1,80 @@
+<ul class="breadcrumb">
+  <li><%= link_to t('person_form.all_people'), people_path %><span class="divider">/</span></li>
+  <li class="active"><%= @person.firstname %> <%= @person.lastname %></li>
+</ul>
+<div class="row">
+  <div class="span2" id="person_thumb">
+    <a href="#"><%= image_tag @person.avatar.url(:thumb), {"data-toggle" => "modal"}%></a>
+  </div>
+  <div class="span10">
+    <h1><%= @person.firstname %> <%= @person.lastname %></h1>
+    <div class="btn-toolbar">
+      <% if can? :new, @person %>
+        <%= link_to "Edit", "#{@person.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Person", new_person_path, :class => "btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
+    <table class="table table-condensed">
+      <caption><h3>Personal Information</h3></caption>
+      <tr>
+        <th>Position</th>
+        <td><%= @person.position %></td>
+      </tr>
+      <tr>
+        <th>Birth Date</th>
+        <td><%= @person.birth_date %></td>
+      </tr>
+      <tr>
+        <th>Nationality</th>
+        <td><%= @person.nationality %></td>
+      </tr>
+      <% if @person.height %>
+        <th>Height</th>
+        <td><%= @person.height %> m</td>
+      <% end %>
+      <tr>
+        <th>Birth City</th>
+        <td><%= @person.birth_city %></td>
+      </tr>
+      <tr>
+        <th>Birth Nation</th>
+        <td><%= @person.birth_nation %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="span8">
+    <div id="career">Career info here</div>
+  </div>
+
+</div>
+
+<div class="modal hide" id="personDetail">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h1><%= @person.firstname %> <%= @person.lastname %></h1>
+  </div>
+  <div class="modal-body">
+    <%= image_tag @person.avatar.url(:medium) %>
+  </div>
+  <div class="modal-footer">
+    <a id="modal-close" href="#" class="btn" data-dismiss="modal">OK</a>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= render :partial => "shared/audit", :locals => {:auditable => @person} %>
+  </div>
+</div>
+
+<script language="JavaScript">
+  $(document).ready(function() {
+    $.get('/<%=I18n.locale%>/careers/<%=@person.id %>', function(data) {
+      $('#career').html(data);
+    });
+  });
+</script>

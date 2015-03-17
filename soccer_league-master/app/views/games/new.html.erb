@@ -1,0 +1,33 @@
+<ul class="breadcrumb">
+  <li><%= link_to "#{@game.league.name} (#{@game.league.to_year}-#{@game.league.from_year})", league_path(@game.league.id) %><span class="divider">/</span></li>
+  <li><%= link_to "All Games", league_games_path(@game.league) %><span class="divider">/</span></li>
+  <li class="active">Create Game</li>
+</ul>
+
+<%= form_for [@league, @game], :html => {:class => "well form-horizontal"} do |f| %>
+  <%= render :partial => "shared/error_messages", :locals => {:model => f.object} %>
+
+    <%= f.hidden_field :league_id %>
+    <div class="control-group">
+      <%= f.label :visiting_team, :class => "control-label" %>
+      <div class="controls"><%= f.text_field :teamstat1_id %></div>
+  </div>
+
+  <div class="control-group">
+      <%= f.label :home_team, :class => "control-label" %>
+      <div class="controls"><%= f.text_field :teamstat2_id %></div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Create Game", :class => "btn" %>
+    <%= link_to "Cancel", league_games_path, :class => "btn" %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $('#game_teamstat1_id,#game_teamstat2_id').tokenInput("/en/leagues/<%= @game.league_id %>/teamstats.json?", {
+    crossDomain: false,
+    prePopulate: $('#game_teamstat1_id,#game_teamstat2_id').data("pre"),
+    theme: "facebook",
+    tokenLimit: 1
+  });
+</script>

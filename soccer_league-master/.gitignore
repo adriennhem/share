@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+coverage/**
+webrat.log
+.idea/**
+*.dat
+*.iml
+.generators
+.DS_Store
+.rakeTasks
+public/system/**
+public/system/**

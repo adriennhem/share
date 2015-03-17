@@ -1,0 +1,22 @@
+<%=header_title("Team Repository")%>
+<div class="alert">Teams play in different leagues over various seasons. And, they also play in tournaments and cups. 
+Manage basic team profile information here.</div>
+
+<% if can? :new, @team %>
+<div class="btn-toolbar">
+  <% if can? :new, @person %>
+      <%= link_to t(:team_new), "teams/new", :class => "btn" %>
+  <% end %>
+</div>
+<% end %>
+
+<%= form_tag teams_path, :method => 'get', :remote => true, :id => "teams_search", :class => "form-search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag t(:search), :class => "btn" %>
+  </p>
+<% end %>
+<div id="teams">
+  <%= render 'team' %>
+</div>
+

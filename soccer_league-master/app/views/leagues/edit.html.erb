@@ -1,0 +1,13 @@
+<%=header_title("Edit League")%>
+<%= render :partial => "form", :locals => {:model => [@league], :league => @league, :save_label => "Update"} %>
+
+<div class="modal hide" id="gameWarning">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Game Management Warning</h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <a id="modal-close" href="#" class="btn" data-dismiss="modal">OK</a>
+  </div>
+</div>

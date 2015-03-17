@@ -1,0 +1,33 @@
+<% if can? :new, @user %>
+  <div class="btn-toolbar">
+    <%= link_to "Edit Profile", "#{@user.id}/edit", :class => "btn" %>
+  </div>
+<% end %>
+<%=header_title("User Information")%>
+
+<div class="hero-unit">
+  <div class="row">
+    <div class="span3"><strong>Username</strong></div>
+    <div class="span9"><%= @user.username %></div>
+  </div>
+  <span class="lead">&nbsp;</span>
+
+  <% if can? :new, @user %>
+    <div class="row">
+      <div class="span3"><strong>Email</strong></div>
+      <div class="span9 username"><%= @user.email %></div>
+    </div>
+    <span class="lead">&nbsp;</span>
+
+    <div class="row">
+      <div class="span3"><strong>Roles</strong></div>
+      <div class="span9 roles">
+        <% for role in @user.roles %>
+          <div><%=h role.to_s.capitalize %><br/></div>
+        <% end %>
+        <% if @user.roles.size == 0 %><div>User Disabled</div><% end%>
+      </div>
+    </div>
+  <% end %>
+</div>
+

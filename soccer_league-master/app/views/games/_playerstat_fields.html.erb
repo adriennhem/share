@@ -1,0 +1,15 @@
+  <%= f.fields_for :playerstats do |c| %>
+  <tr>
+  <td><%= c.object.team_name %></td>
+  <td><%= c.object.person.firstname %> <%= c.object.person.lastname %></td>
+  <td><%= c.text_field :goals, :class => "span1" %></td>
+  <td><%= c.text_field :assists, :class => "span1" %></td>
+  <td><%= c.text_field :shots, :class => "span1" %></td>
+  <td><%= c.text_field :fouls, :class => "span1" %></td>
+  <td><%= c.text_field :yellow_cards, :class => "span1" %></td>
+  <td><%= c.text_field :red_cards, :class => "span1" %></td>
+  <td><%= c.text_field :minutes, :class => "span1" %></td>
+  <td><%= c.text_field :saves, :class => "span1" %></td>
+  <td><%= c.text_field :jersey_number, :class => "span1" %></td>
+  </tr>
+  <% end %>

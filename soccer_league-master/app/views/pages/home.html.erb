@@ -1,0 +1,15 @@
+<div class="hero-unit">
+  <h2><%= t('home_page.headline') %></h2>
+  <p><%= t('home_page.body') %></p>
+  <p>
+    <%= link_to t('menu_top.orgs'), organizations_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.leagues'), leagues_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.teams'), teams_path, :class => "btn btn-primary btn-large" %>
+    <%= link_to t('menu_top.people'), people_path, :class => "btn btn-primary btn-large" %>
+    <% if !user_signed_in? %>
+      <%= link_to t('menu_top.login'), new_user_registration_path, :class => "btn btn-primary btn-large" %>
+    <% end%>
+  </p>
+</div>
+
+

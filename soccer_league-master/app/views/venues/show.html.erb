@@ -1,0 +1,85 @@
+<%=header_title("Venue: #{@venue.name}")%>
+
+<div class="btn-toolbar">
+    <% if can? :new, @venue %>
+        <%= link_to "Edit", "#{@venue.id}/edit", :class => "btn"  %>
+        <%= link_to "Add Venue", new_venue_path, :class => "btn" %>
+    <% end %>
+    <%= link_to "All Venues", venues_path, :class => "btn" %>
+</div>
+<div class="row">
+    <div class="span6">
+        <table class="table table-condensed">
+            <tr>
+                <th>Name</th>
+                <td><%= @venue.name %></td>
+            </tr>
+            <tr>
+                <th>Year Built</th>
+                <td><%= @venue.built %></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><%= @venue.address %></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><%= @venue.description %></td>
+            </tr>
+            <tr>
+                <th>Directions</th>
+                <td><%= @venue.directions %></td>
+            </tr>
+            <tr>
+                <th>Coordinates (Latitude)</th>
+                <td><%= @venue.coordinate_lat %></td>
+            </tr>
+            <tr>
+                <th>Coordinates (Longitude)</th>
+                <td><%= @venue.coordinate_long %></td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td><%= @venue.surface %></td>
+            </tr>
+        </table>
+    </div>
+    <div class="span6">
+        <div id="map_canvas"></div>
+        <a href="https://maps.google.com/maps?q=<%="#{@venue.coordinate_lat},#{@venue.coordinate_long}"%>" target="_blank">Get Directions</a>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <%= render :partial => "shared/audit", :locals => {:auditable => @venue} %>
+    </div>
+</div>
+<% unless @venue.coordinate_lat.nil? || @venue.coordinate_long.nil? %>
+    <script>
+        function venue_map_show() {
+            var lat = <%= @venue.coordinate_lat %>;
+            var long = <%= @venue.coordinate_long %>;
+            var mapOptions = {
+                zoom: 15,
+                center: new google.maps.LatLng(lat, long),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            var markerOptions = {
+                position: new google.maps.LatLng(lat, long)
+            };
+            var marker = new google.maps.Marker(markerOptions);
+            marker.setMap(map);
+            var infoWindowOptions = {
+                content: '<%= "Venue Name: #{@venue.name}".html_safe.gsub('\'','') %>'
+            };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+            google.maps.event.addListener(marker,'click',function(e){
+                infoWindow.open(map, marker);
+            });
+        }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAP_API_KEY%>&sensor=false&callback=venue_map_show"></script>
+
+<% end %>
+

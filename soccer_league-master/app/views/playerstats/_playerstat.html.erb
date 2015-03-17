@@ -1,0 +1,24 @@
+<tr>
+<td><%= link_to playerstat.team_name, team_path(playerstat.teamstat.team) %> </td>
+<td><%= link_to playerstat.person.name, person_path(playerstat.person.id) %> </td>
+<td><%= playerstat.goals %></td>
+<td><%= playerstat.assists %></td>
+<td><%= playerstat.shots %></td>
+<td><%= playerstat.fouls %></td>
+<td><%= playerstat.yellow_cards %></td>
+<td><%= playerstat.red_cards %></td>
+<td><%= playerstat.minutes %></td>
+<td><%= playerstat.saves %></td>
+<td><%= playerstat.jersey_number %></td>
+<% if can? :new, @game and !@game.completed %>
+<td>
+    <%= link_to "Remove", playerstat, :method => :delete,
+                                     :data => {:confirm => "Remove this person?"},
+                                      :id => "remove_person",
+                                      :title => "Remove",
+                                     :class => "btn btn-danger" %>
+</td>
+<% end %>
+</tr>
+
+

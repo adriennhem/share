@@ -1,0 +1,21 @@
+<%=header_title("All Users")%>
+<% if can? :new, @user %>
+<div class="alert">Filter Users By Role</div>
+<div class="btn-toolbar">
+  <%= link_to "Admins", "/users?role=admin", :class => "btn" %>
+  <%= link_to "Free", "/users?role=free", :class => "btn" %>
+  <%= link_to "Disabled", "/users?role=", :class => "btn" %>
+  <%= link_to "All", "/users", :class => "btn" %>
+</div>
+<% end %>
+
+<%= form_tag users_path, :method => 'get', :remote => true, :id => "users_search", :class => "form-search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
+    <%= submit_tag t(:search), :class => "btn" %>
+  </p>
+<% end %>
+<div id="users">
+  <%= render 'user' %>
+</div>
+
